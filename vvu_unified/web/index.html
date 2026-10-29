@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="VVU Unified Roof — 25-surface operational control room for the Venture Vision Ubuntu estate.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="VVU Unified Roof">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>VVU Unified Roof</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #06070B;
+      color: #E8E8EA;
+      font-family: 'Roboto Mono', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    #loading {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      background-color: #06070B;
+      z-index: 9999;
+      transition: opacity 0.4s ease;
+    }
+
+    #loading.gone {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .vvu-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 4px;
+      background-color: #4DD2FF;
+      color: #06070B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    .vvu-title {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 2.4px;
+      font-weight: 600;
+      color: #E8E8EA;
+      text-transform: uppercase;
+    }
+
+    .vvu-sub {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.6px;
+      color: #8A8D96;
+      text-transform: uppercase;
+    }
+
+    .vvu-spinner {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(77, 210, 255, 0.15);
+      border-top-color: #4DD2FF;
+      animation: vvu-spin 0.9s linear infinite;
+    }
+
+    @keyframes vvu-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .vvu-beat {
+      display: flex;
+      gap: 3px;
+      margin-top: 4px;
+    }
+
+    .vvu-beat span {
+      width: 6px;
+      height: 18px;
+      background-color: #222734;
+      border-radius: 1px;
+      animation: vvu-beat-pulse 1.4s ease-in-out infinite;
+    }
+
+    .vvu-beat span:nth-child(1) { animation-delay: 0.0s; }
+    .vvu-beat span:nth-child(2) { animation-delay: 0.1s; }
+    .vvu-beat span:nth-child(3) { animation-delay: 0.2s; }
+    .vvu-beat span:nth-child(4) { animation-delay: 0.3s; }
+    .vvu-beat span:nth-child(5) { animation-delay: 0.4s; }
+    .vvu-beat span:nth-child(6) { animation-delay: 0.5s; }
+    .vvu-beat span:nth-child(7) { animation-delay: 0.6s; }
+    .vvu-beat span:nth-child(8) { animation-delay: 0.7s; }
+
+    @keyframes vvu-beat-pulse {
+      0%, 100% { background-color: #222734; }
+      40%      { background-color: #4DD2FF; }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <div class="vvu-mark">V</div>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+      <div class="vvu-title">VVU Unified Roof</div>
+      <div class="vvu-sub">estate · gqeberha za</div>
+    </div>
+    <div class="vvu-spinner"></div>
+    <div class="vvu-beat">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="vvu-sub" style="margin-top: 6px;">booting estate · v2.4.1</div>
+  </div>
+
+  <!--
+    You can customize the "flutter_bootstrap.js" script.
+    This is useful to provide a custom configuration to the Flutter loader
+    or to give the user feedback during the initialization process.
+
+    For more details:
+    * https://docs.flutter.dev/platform-integration/web/initialization
+  -->
+  <script src="flutter_bootstrap.js" async></script>
+
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var el = document.getElementById('loading');
+      if (el) {
+        el.classList.add('gone');
+        setTimeout(function () {
+          if (el.parentNode) {
+            el.parentNode.removeChild(el);
+          }
+        }, 500);
+      }
+    });
+  </script>
+</body>
+</html>

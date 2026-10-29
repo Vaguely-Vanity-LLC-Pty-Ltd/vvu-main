@@ -1,21 +1,24 @@
-# Secrets — NEVER commit these
+# Secrets
 .env
 .env.*
 *.env
 upload/env*.zip
 upload/env*.txt
 **/secrets.*
-**/credentials.*
+
+# Flutter
+build/
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+.idea/
 
 # Skills
 skills/
 
-# Build artifacts
-node_modules/
-.dart_tool/
-build/
-
-# OS files
+# OS
 .DS_Store
 Thumbs.db
 
