@@ -1,0 +1,23 @@
+# Secrets — NEVER commit these
+.env
+.env.*
+*.env
+upload/env*.zip
+upload/env*.txt
+**/secrets.*
+**/credentials.*
+
+# Skills
+skills/
+
+# Build artifacts
+node_modules/
+.dart_tool/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

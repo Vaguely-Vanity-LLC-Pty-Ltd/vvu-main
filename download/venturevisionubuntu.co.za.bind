@@ -1,0 +1,18 @@
+@           IN  A   76.76.21.21
+www         IN  CNAME cname.vercel-dns.com.
+@           IN  CAA 0 issue "letsencrypt.org"
+
+@           IN  MX  10  route1.mx.cloudflare.net.
+@           IN  MX  12  route2.mx.cloudflare.net.
+@           IN  MX  34  route3.mx.cloudflare.net.
+@           IN  MX  9   inbound-smtp.eu-west-1.amazonaws.com.
+send        IN  MX  10  feedback-smtp.eu-west-1.amazonses.com.
+
+@           IN  TXT "v=spf1 include:_spf.google.com include:_spf.mx.cloudflare.net ~all"
+send        IN  TXT "v=spf1 include:amazonses.com ~all"
+_dmarc      IN  TXT "v=DMARC1; p=quarantine; rua=mailto:admin@venturevisionubuntu.co.za"
+resend._domainkey IN TXT "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQ3b62Iuki4dHg6QQCo2RamTshVFzUmuGteGidwyopvCgpvxhnUUYiIoJqSJdXHFCspp6dSxjh7qbEn3owZM2av2aIpusd1KqK1tE3MnSs4O3OjuHciA/t6sciBYfatPxd69c7UrrxSaSVYrinIozP2iUi4HSVyeJQduJz6MKnkwIDAQAB"
+@           IN  TXT "google-site-verification=SJZXUFJSum7J07tjW_1GcaNzoUtTJm9WIICowONwJ8g"
+
+_vercel     IN  TXT "vc-domain-verify=venturevisionubuntu.co.za,cee9bfa8123a5c47edf0"
+_vercel.www IN  TXT "vc-domain-verify=www.venturevisionubuntu.co.za,7183d82527be7f6f6cea"
