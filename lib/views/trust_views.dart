@@ -839,6 +839,16 @@ class _BenchViewState extends State<BenchView> {
       padding: const EdgeInsets.all(16),
       child: ListView(
         children: [
+          // Fluid Studio license seal
+          Center(
+            child: Image.asset(
+              'assets/images/fluid_studio_seal.jpg',
+              width: 120,
+              height: 120,
+              fit: BoxFit.contain,
+            ),
+          ),
+          const SizedBox(height: 12),
           _SurfaceHeader(
             title: 'BENCH',
             blurb: 'Node-locked license generator & plugin creator studio.',

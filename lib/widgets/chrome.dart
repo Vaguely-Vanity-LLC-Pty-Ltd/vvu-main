@@ -17,24 +17,12 @@ class StatusStrip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Row(
         children: [
-          // Estate mark
-          Container(
+          // Estate mark — Borromean rings logo
+          Image.asset(
+            'assets/images/vvu_borromean_rings.png',
             width: 32,
             height: 32,
-            decoration: BoxDecoration(
-              color: VvuColors.twin,
-              borderRadius: BorderRadius.circular(VvuRadii.md),
-            ),
-            alignment: Alignment.center,
-            child: const Text(
-              'V',
-              style: TextStyle(
-                fontFamily: VvuTypography.mono,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                color: VvuColors.background,
-              ),
-            ),
+            fit: BoxFit.contain,
           ),
           const SizedBox(width: 10),
           Column(

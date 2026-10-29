@@ -37,23 +37,11 @@ class TopMenuBar extends StatelessWidget implements PreferredSizeWidget {
             padding: EdgeInsets.zero,
           ),
           const SizedBox(width: 4),
-          Container(
+          Image.asset(
+            'assets/images/vvu_borromean_rings.png',
             width: 22,
             height: 22,
-            decoration: BoxDecoration(
-              color: VvuColors.twin,
-              borderRadius: BorderRadius.circular(VvuRadii.sm),
-            ),
-            alignment: Alignment.center,
-            child: const Text(
-              'V',
-              style: TextStyle(
-                fontFamily: VvuTypography.mono,
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-                color: VvuColors.background,
-              ),
-            ),
+            fit: BoxFit.contain,
           ),
           const SizedBox(width: 6),
           const Text(
