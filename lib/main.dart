@@ -1,6 +1,8 @@
-// VVU Unified Roof — Entry point.
+// VVU Unified Roof - Entry point.
 import 'package:flutter/material.dart';
+import 'package:url_strategy/url_strategy.dart';
 
+import 'models/estate.dart';
 import 'services/hostafrica_api.dart';
 import 'services/stitch_api.dart';
 import 'views/app_shell.dart';
@@ -16,6 +18,10 @@ void main() {
   HostAfricaConfig.init(
     '9rFlg2kusu3HQWbnWSTbEtEPSX4koscpxWKrORG6LJjSmtPYuzLLfijgEvXP',
   );
+
+  // Use path-based URLs for clean deep linking (no # in URL)
+  setPathUrlStrategy();
+
   runApp(const VvuUnifiedRoofApp());
 }
 

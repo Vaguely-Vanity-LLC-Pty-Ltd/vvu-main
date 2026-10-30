@@ -1,4 +1,6 @@
-// VVU Unified Roof — App shell (top-level scaffold).
+// VVU Unified Roof - App shell (top-level scaffold).
+import 'dart:html' as html;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -37,13 +39,50 @@ class _VvuUnifiedRoofState extends State<VvuUnifiedRoof> {
   void initState() {
     super.initState();
     _state = EstateState();
+    _syncUrlToState();
+    _state.addListener(_onStateChanged);
+    html.window.addEventListener('popstate', (_) => _onPopState());
   }
 
   @override
   void dispose() {
     _focusNode.dispose();
+    _state.removeListener(_onStateChanged);
     _state.dispose();
     super.dispose();
+  }
+
+  void _onPopState() {
+    _syncUrlToState();
+  }
+
+  void _onStateChanged() {
+    _syncStateToUrl();
+  }
+
+  void _syncUrlToState() {
+    final path = html.window.location.pathname;
+    final cleanPath = path.endsWith('/') ? path.substring(0, path.length - 1) : path;
+    final surfaceId = cleanPath.isEmpty ? 'twin' : cleanPath.substring(1);
+
+    // Validate the surface ID
+    final validSurface = kSurfaces.any((s) => s.id == surfaceId);
+    if (validSurface && _state.activeSurface != surfaceId) {
+      _state.setActiveSurface(surfaceId);
+    } else if (!validSurface && cleanPath != '') {
+      // Invalid route - redirect to twin
+      html.window.history.pushState(null, '', '/twin');
+      _state.setActiveSurface('twin');
+    }
+  }
+
+  void _syncStateToUrl() {
+    final currentPath = html.window.location.pathname;
+    final targetPath = '/${_state.activeSurface}';
+
+    if (currentPath != targetPath) {
+      html.window.history.pushState(null, '', targetPath);
+    }
   }
 
   void _navigate(String id) {
@@ -53,7 +92,7 @@ class _VvuUnifiedRoofState extends State<VvuUnifiedRoof> {
     }
   }
 
-  /// Keyboard shortcuts: Ctrl+1..9 → first 9 surfaces.
+  /// Keyboard shortcuts: Ctrl+1..9 -> first 9 surfaces.
   void _onKey(KeyEvent event) {
     if (event is! KeyDownEvent) return;
     final ctrl = HardwareKeyboard.instance.isControlPressed ||
@@ -284,9 +323,34 @@ class _NotFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'Surface "$id" not found.',
-        style: VvuTypography.body,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.error_outline_rounded, size: 64, color: VvuColors.danger),
+          const SizedBox(height: 16),
+          Text(
+            '404 - Surface not found',
+            style: TextStyle(
+              fontFamily: VvuTypography.mono,
+              fontSize: 18,
+              color: VvuColors.danger,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Surface "$id" does not exist',
+            style: VvuTypography.body,
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () => html.window.location.href = '/twin',
+            style: ElevatedButton.styleFrom(
+              backgroundColor: VvuColors.twin,
+              foregroundColor: VvuColors.background,
+            ),
+            child: const Text('Go to Twin'),
+          ),
+        ],
       ),
     );
   }
